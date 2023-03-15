@@ -1,0 +1,3 @@
+/home/bukvar/tp/capybaratp/src/cmake-build-debug/CMakeFiles/src.dir
+/home/bukvar/tp/capybaratp/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/bukvar/tp/capybaratp/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
