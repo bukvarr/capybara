@@ -4,14 +4,19 @@
 
 #include "Object.h"
 
-NPO::NPO(Point* pos, Point* center, Point* speed,
+NPO::NPO(Point* pos, Point* center, const Point* speed,
          size_t width, size_t height, int tic_count)
          : pos(pos), center(center), speed(speed),
            width(width), height(height), tic_count(tic_count) {}
 
 bool NPO::Intersects(const Object& other) const {
-  return std::abs(pos->x - other.GetPos()->x) < (width + other.GetW()) ||
+  return std::abs(pos->x - other.GetPos()->x) < (width + other.GetW()) &&
          std::abs(pos->y - other.GetPos()->y) < (height + other.GetH());
+}
+
+bool NPO::isOutOfBorder() const {
+  return std::abs(pos->x) >= GameConstants::play_zone_h ||
+         std::abs(pos->y) >= GameConstants::play_zone_w;
 }
 
 void NPO::Boost() {
@@ -30,32 +35,53 @@ Point* NPO::GetPos() const {
   return pos;
 }
 
-Capybara::Capybara(Point* pos, Point* center, Point* speed,
+PlayableObj::PlayableObj(Point* pos, Point* center, const Point* speed,
          size_t width, size_t height, int tic_count)
         : pos(pos), center(center), speed(speed),
           width(width), height(height), tic_count(tic_count) {}
 
-bool Capybara::Intersects(const Object& other) const {
-  return std::abs(pos->x - other.GetPos()->x) < (width + other.GetW()) ||
+bool PlayableObj::Intersects(const Object& other) const {
+  return std::abs(pos->x - other.GetPos()->x) < (width + other.GetW()) &&
          std::abs(pos->y - other.GetPos()->y) < (height + other.GetH());
 }
 
-bool Capybara::isOutOfBorder() const {
-  return std::abs(pos->x) >= constants::width ||
-         std::abs(pos->y) >= constants::height;
+bool PlayableObj::isOutOfBorder() const {
+  return std::abs(pos->x) >= GameConstants::play_zone_w ||
+         std::abs(pos->y) >= GameConstants::play_zone_h;
 }
 
-void Capybara::Move(const Point& diff) {
+void PlayableObj::Boost() {
+  ++tic_count;
+  pos->x += speed->x;
+  pos->y += speed->y;
+}
+
+void PlayableObj::Move(const Point& diff) {
   pos->x += diff.x;
   pos->y += diff.y;
 }
 
-size_t Capybara::GetH() const {
+size_t PlayableObj::GetH() const {
   return height;
 }
-size_t Capybara::GetW() const {
+size_t PlayableObj::GetW() const {
   return width;
 }
-Point* Capybara::GetPos() const {
+Point* PlayableObj::GetPos() const {
   return pos;
+}
+
+Object* CarCreator::CreateObj(Point* pos, Point* center) {
+  return new NPO(pos, center, ObjConstants::car_speed, ObjConstants::car_w,
+             ObjConstants::car_h, 0);
+}
+
+Object* TreeCreator::CreateObj(Point* pos, Point* center) {
+  return new NPO(pos, center, ObjConstants::zero_speed, ObjConstants::tree_w,
+                 ObjConstants::tree_h, 0);
+}
+
+Object* Pl_ObjCreator::CreateObj(Point* pos, Point* center) {
+  return new PlayableObj(pos, center, ObjConstants::zero_speed, ObjConstants::Pl_Obj_w,
+                 ObjConstants::Pl_Obj_h, 0);
 }

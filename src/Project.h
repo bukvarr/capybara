@@ -7,15 +7,11 @@
 
 //#include <SDL.h>
 
-namespace constants{
-    const int height = 228;
-    const int width = 228;
-}
-
 #include <iostream>
 #include <fstream>
 #include <cmath>
 #include <vector>
+#include <deque>
 #include <unordered_map>
 #include <string>
 #include <ctime>
