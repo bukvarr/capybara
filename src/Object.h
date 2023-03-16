@@ -19,12 +19,14 @@ class Object {
   virtual size_t GetH() const = 0;
   virtual size_t GetW() const = 0;
   virtual Point* GetPos() const = 0;
+
+  virtual ~Object() = 0;
 };
 
 class NPO : public Object {
  public:
-  NPO(Point* pos, Point* center, const Point* speed,
-      size_t width, size_t height, int tic_count);
+  NPO(Point* pos, const Point* speed,
+      size_t width, size_t height);
 
   bool Intersects(const Object& other) const override;
 
@@ -36,19 +38,18 @@ class NPO : public Object {
   size_t GetW() const override;
   Point* GetPos() const override;
 
+  ~NPO() override;
+
  private:
   Point* pos;
-  Point* center;
   const Point* speed;
   const size_t width;
   const size_t height;
-  int tic_count;
 };
 
 class PlayableObj : public Object {
  public:
-  PlayableObj(Point* pos, Point* center, const Point* speed,
-  size_t width, size_t height, int tic_count);
+  PlayableObj(Point* pos, size_t width, size_t height);
 
   bool Intersects(const Object& other) const override;
 
@@ -62,33 +63,27 @@ class PlayableObj : public Object {
 
   void Boost() override;
 
+  ~PlayableObj() override;
+
  private:
   Point* pos;
-  Point* center;
-  const Point* speed;
   const size_t width;
   const size_t height;
-  int tic_count;
 };
 
-class Creator {
- protected:
-  virtual Object* CreateObj(Point* pos) const = 0;
-};
-
-class CarCreator : protected Creator {
+class CarCreator {
  public:
-  static Object* CreateObj(Point* pos, Point* center);
+  static Object* CreateObj(Point* pos);
 };
 
-class TreeCreator : protected Creator {
+class TreeCreator {
  public:
-  static Object* CreateObj(Point* pos, Point* center);
+  static Object* CreateObj(Point* pos);
 };
 
-class Pl_ObjCreator : protected Creator {
+class Pl_ObjCreator {
  public:
-  static Object* CreateObj(Point* pos, Point* center);
+  static Object* CreateObj(Point* pos);
 };
 
 #endif //SRC_OBJECT_H

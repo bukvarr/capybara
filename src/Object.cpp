@@ -4,10 +4,10 @@
 
 #include "Object.h"
 
-NPO::NPO(Point* pos, Point* center, const Point* speed,
-         size_t width, size_t height, int tic_count)
-         : pos(pos), center(center), speed(speed),
-           width(width), height(height), tic_count(tic_count) {}
+NPO::NPO(Point* pos, const Point* speed,
+         size_t width, size_t height)
+         : pos(pos), speed(speed),
+           width(width), height(height) {}
 
 bool NPO::Intersects(const Object& other) const {
   return std::abs(pos->x - other.GetPos()->x) < (width + other.GetW()) &&
@@ -20,7 +20,6 @@ bool NPO::isOutOfBorder() const {
 }
 
 void NPO::Boost() {
-  ++tic_count;
   pos->x += speed->x;
   pos->y += speed->y;
 }
@@ -35,10 +34,13 @@ Point* NPO::GetPos() const {
   return pos;
 }
 
-PlayableObj::PlayableObj(Point* pos, Point* center, const Point* speed,
-         size_t width, size_t height, int tic_count)
-        : pos(pos), center(center), speed(speed),
-          width(width), height(height), tic_count(tic_count) {}
+NPO::~NPO() {
+  delete pos;
+}
+
+PlayableObj::PlayableObj(Point* pos, size_t width, size_t height)
+        : pos(pos), width(width),
+          height(height) {}
 
 bool PlayableObj::Intersects(const Object& other) const {
   return std::abs(pos->x - other.GetPos()->x) < (width + other.GetW()) &&
@@ -50,11 +52,7 @@ bool PlayableObj::isOutOfBorder() const {
          std::abs(pos->y) >= GameConstants::play_zone_h;
 }
 
-void PlayableObj::Boost() {
-  ++tic_count;
-  pos->x += speed->x;
-  pos->y += speed->y;
-}
+void PlayableObj::Boost() {}
 
 void PlayableObj::Move(const Point& diff) {
   pos->x += diff.x;
@@ -71,17 +69,21 @@ Point* PlayableObj::GetPos() const {
   return pos;
 }
 
-Object* CarCreator::CreateObj(Point* pos, Point* center) {
-  return new NPO(pos, center, ObjConstants::car_speed, ObjConstants::car_w,
-             ObjConstants::car_h, 0);
+PlayableObj::~PlayableObj() {
+  delete pos;
 }
 
-Object* TreeCreator::CreateObj(Point* pos, Point* center) {
-  return new NPO(pos, center, ObjConstants::zero_speed, ObjConstants::tree_w,
-                 ObjConstants::tree_h, 0);
+Object* CarCreator::CreateObj(Point* pos) {
+  return new NPO(pos, ObjConstants::car_speed, ObjConstants::car_w,
+             ObjConstants::car_h);
 }
 
-Object* Pl_ObjCreator::CreateObj(Point* pos, Point* center) {
-  return new PlayableObj(pos, center, ObjConstants::zero_speed, ObjConstants::Pl_Obj_w,
-                 ObjConstants::Pl_Obj_h, 0);
+Object* TreeCreator::CreateObj(Point* pos) {
+  return new NPO(pos, ObjConstants::zero_speed, ObjConstants::tree_w,
+                 ObjConstants::tree_h);
+}
+
+Object* Pl_ObjCreator::CreateObj(Point* pos) {
+  return new PlayableObj(pos, ObjConstants::Pl_Obj_w,
+                 ObjConstants::Pl_Obj_h);
 }

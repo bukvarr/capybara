@@ -14,16 +14,26 @@ class Map {
   void Update();
 
   const std::vector<std::deque<Object*>>& GetMov() const;
-  const std::vector<Object*>& GetStatic() const;
-  const PlayableObj*& GetPl_0bj() const;
+  const std::vector<std::vector<Object*>>& GetStatic() const;
+  const Object* GetPl_0bj() const;
+
+  const std::vector<int>& GetMovH() const;
+  const std::vector<int>& GetStaticH() const;
+
+  const std::vector<LineStruct> GetLines() const;
 
   ~Map();
 
  private:
   std::vector<std::deque<Object*>> movable_objs;
   std::vector<int> mov_objs_h;
-  std::vector<Object*> static_objs;
-  PlayableObj* pl_obj;
+  std::vector<int> static_objs_h;
+  std::vector<std::vector<Object*>> static_objs;
+
+  std::vector<LineStruct> lines;
+
+  Object* pl_obj;
+
   Point* center;
 };
 
