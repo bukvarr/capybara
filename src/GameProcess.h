@@ -10,7 +10,12 @@ class Map;
 
 class Game {
   Game();
-  void start();
+
+
+  void GameProcess();
+
+
+
 
 
  private:

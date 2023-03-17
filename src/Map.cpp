@@ -54,20 +54,20 @@ void Map::Update(Input* input) {
                  new Point(0, mov_objs_h[vit - movable_objs.begin()])));
     }
   }
-
-  if (input->IsKeyUp()) {
-    pl_obj->Move(const_points.up);
+  if (input != nullptr) {
+    if (input->IsKeyUp()) {
+      pl_obj->Move(const_points.up);
+    }
+    if (input->IsKeyDown()) {
+      pl_obj->Move(const_points.down);
+    }
+    if (input->IsKeyLeft()) {
+      pl_obj->Move(const_points.left);
+    }
+    if (input->IsKeyRight()) {
+      pl_obj->Move(const_points.right);
+    }
   }
-  if (input->IsKeyDown()) {
-    pl_obj->Move(const_points.down);
-  }
-  if (input->IsKeyLeft()) {
-     pl_obj->Move(const_points.left);
-  }
-  if (input->IsKeyRight()) {
-    pl_obj->Move(const_points.right);
-  }
-
 }
 
 const std::vector<std::deque<Object*>>& Map::GetMov() const {
