@@ -18,8 +18,8 @@ class Object {
 
   virtual void Move(const Point* diff) = 0;
 
-  virtual size_t GetH() const = 0;
-  virtual size_t GetW() const = 0;
+  virtual size_t GetY() const = 0;
+  virtual size_t GetX() const = 0;
   virtual Point* GetPos() const = 0;
 
 };
@@ -37,8 +37,8 @@ class NPO : public Object {
 
   void Move(const Point* diff) override;
 
-  size_t GetH() const override;
-  size_t GetW() const override;
+  size_t GetX() const override;
+  size_t GetY() const override;
   Point* GetPos() const override;
 
   ~NPO();
@@ -58,8 +58,8 @@ class PlayableObj : public Object {
 
   bool isOutOfBorder() const override;
 
-  size_t GetH() const override;
-  size_t GetW() const override;
+  size_t GetY() const override;
+  size_t GetX() const override;
   Point* GetPos() const override;
 
   void Move(const Point* diff) override;

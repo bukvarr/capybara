@@ -12,8 +12,8 @@ NPO::NPO(Point* pos, const Point* speed,
            width(width), height(height) {}
 
 bool NPO::Intersects(const Object& other) const {
-  return std::abs(pos->x - other.GetPos()->x) < (width + other.GetW()) &&
-         std::abs(pos->y - other.GetPos()->y) < (height + other.GetH());
+  return std::abs(pos->x - other.GetPos()->x) < (width + other.GetX()) &&
+         std::abs(pos->y - other.GetPos()->y) < (height + other.GetY());
 }
 
 bool NPO::isOutOfBorder() const {
@@ -30,11 +30,11 @@ void NPO::Move(const Point* diff) {
     std::ignore = nullptr;
 }
 
-size_t NPO::GetH() const {
-  return height;
+size_t NPO::GetY() const {
+  return pos->y;
 }
-size_t NPO::GetW() const {
-  return width;
+size_t NPO::GetX() const {
+  return pos->x;
 }
 Point* NPO::GetPos() const {
   return pos;
@@ -49,8 +49,8 @@ PlayableObj::PlayableObj(Point* pos, size_t width, size_t height)
           height(height) {}
 
 bool PlayableObj::Intersects(const Object& other) const {
-  return std::abs(pos->x - other.GetPos()->x) < (width + other.GetW()) &&
-         std::abs(pos->y - other.GetPos()->y) < (height + other.GetH());
+  return std::abs(pos->x - other.GetPos()->x) < (width + other.GetX()) &&
+         std::abs(pos->y - other.GetPos()->y) < (height + other.GetY());
 }
 
 bool PlayableObj::isOutOfBorder() const {
@@ -67,11 +67,11 @@ void PlayableObj::Move(const Point* diff) {
   pos->y += diff->y;
 }
 
-size_t PlayableObj::GetH() const {
-  return height;
+size_t PlayableObj::GetY() const {
+  return pos->y;
 }
-size_t PlayableObj::GetW() const {
-  return width;
+size_t PlayableObj::GetX() const {
+  return pos->x;
 }
 Point* PlayableObj::GetPos() const {
   return pos;

@@ -18,18 +18,6 @@ class Map {
   void CreateMap();
   void Update(Input* input);
 
-  const std::vector<std::deque<Object*>>& GetMov() const;
-  const std::vector<std::vector<Object*>>& GetStatic() const;
-  const Object* GetPl_0bj() const;
-
-  const std::vector<int>& GetMovH() const;
-  const std::vector<int>& GetStaticH() const;
-
-  const std::vector<LineStruct> GetLines() const;
-
-  ~Map();
-
- private:
   std::vector<std::deque<Object*>> movable_objs;
   std::vector<int> mov_objs_h;
   std::vector<int> static_objs_h;
@@ -39,7 +27,10 @@ class Map {
 
   Object* pl_obj;
 
-  Point* center;
+  Point* center = new Point(GameConstants::screen_width + 1,
+                            GameConstants::screen_height + 1);
+
+  ~Map();
 };
 
 

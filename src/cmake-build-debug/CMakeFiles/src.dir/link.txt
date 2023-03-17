@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/src.dir/main.cpp.o CMakeFiles/src.dir/Util.cpp.o CMakeFiles/src.dir/Input.cpp.o CMakeFiles/src.dir/Map.cpp.o CMakeFiles/src.dir/Object.cpp.o CMakeFiles/src.dir/GameProcess.cpp.o -o src 

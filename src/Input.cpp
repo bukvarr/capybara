@@ -23,3 +23,7 @@ bool Input::IsKeyLeft() {
 bool Input::IsKeyRight() {
     return (event.type == SDLK_RIGHT);
 }
+
+bool Input::IsExit() {
+  return (event.type == SDLK_ESCAPE);
+}

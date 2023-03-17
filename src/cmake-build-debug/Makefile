@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/229/bin/cmake/linux/x64/bin/cmake
+CMAKE_COMMAND = /opt/clion-2022.3/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/229/bin/cmake/linux/x64/bin/cmake -E rm -f
+RM = /opt/clion-2022.3/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sergey/Desktop/Files/git/src
+CMAKE_SOURCE_DIR = /home/bukvar/tp/capybara/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sergey/Desktop/Files/git/src/cmake-build-debug
+CMAKE_BINARY_DIR = /home/bukvar/tp/capybara/src/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/sergey/Desktop/Files/git/src/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/229/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/opt/clion-2022.3/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/229/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/clion-2022.3/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sergey/Desktop/Files/git/src/cmake-build-debug/CMakeFiles /home/sergey/Desktop/Files/git/src/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bukvar/tp/capybara/src/cmake-build-debug/CMakeFiles /home/bukvar/tp/capybara/src/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sergey/Desktop/Files/git/src/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bukvar/tp/capybara/src/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,6 +128,30 @@ src: cmake_check_build_system
 src/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/build
 .PHONY : src/fast
+
+GameProcess.o: GameProcess.cpp.o
+.PHONY : GameProcess.o
+
+# target to build an object file
+GameProcess.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/GameProcess.cpp.o
+.PHONY : GameProcess.cpp.o
+
+GameProcess.i: GameProcess.cpp.i
+.PHONY : GameProcess.i
+
+# target to preprocess a source file
+GameProcess.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/GameProcess.cpp.i
+.PHONY : GameProcess.cpp.i
+
+GameProcess.s: GameProcess.cpp.s
+.PHONY : GameProcess.s
+
+# target to generate assembly for a file
+GameProcess.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/GameProcess.cpp.s
+.PHONY : GameProcess.cpp.s
 
 Input.o: Input.cpp.o
 .PHONY : Input.o
@@ -258,6 +282,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... src"
+	@echo "... GameProcess.o"
+	@echo "... GameProcess.i"
+	@echo "... GameProcess.s"
 	@echo "... Input.o"
 	@echo "... Input.i"
 	@echo "... Input.s"

@@ -11,20 +11,20 @@ class Map;
 class Game {
   Game();
 
-
   void GameProcess();
-
-
-
-
+  bool CheckLose();
+  bool CheckWin();
+  void Exit();
+  void Won();
+  void Lost();
 
  private:
   bool run;
-  int start_time; //время начала в мс
 //Graphics* graphics;
   Input* input;
   Map* map;
 
+  ~Game();
 };
 
 #endif //SRC_GAMEPROCESS_H

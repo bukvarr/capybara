@@ -18,8 +18,11 @@ void Map::CreateMap() {
       static_objs_h.push_back(i);
       static_objs.push_back(std::vector<Object*>());
       i += GameConstants::obstacle_line_min_dist;
+      for (int t = 1; t < GameConstants::obstacle_line_min_dist; ++t) {
+        lines.push_back(LineStruct());
+      }
       int j = center->x - GameConstants::screen_width + ObjConstants::tree_w;
-      while (j < GameConstants::screen_width - ObjConstants::tree_w) {
+      while (j < GameConstants::play_zone_w - ObjConstants::tree_w) {
         if (std::rand() % GameConstants::tree_spawn_rate == 0) {
           (static_objs.end() - 1)->push_back(TreeCreator::CreateObj(
                   new Point(i, j)));
@@ -31,6 +34,9 @@ void Map::CreateMap() {
       mov_objs_h.push_back(i);
       movable_objs.push_back(std::deque<Object*>());
       i += GameConstants::obstacle_line_min_dist;
+      for (int t = 1; t < GameConstants::obstacle_line_min_dist; ++t) {
+        lines.push_back(LineStruct());
+      }
     } else {
       lines.push_back(LineStruct());
     }
@@ -38,20 +44,25 @@ void Map::CreateMap() {
 }
 
 void Map::Update(Input* input) {
-  std::vector<std::deque<Object*>>::iterator vit;
-  for (vit = movable_objs.begin(); vit != movable_objs.end(); ++vit) {
+  std::vector<LineStruct>::const_iterator vit;
+  for (vit = lines.cbegin(); vit != lines.cend(); ++vit) {
+    if (vit->indicator!= LineIndicators::road_ind) {
+      continue;
+    }
+    int index = vit->index;
     std::deque<Object*>::reverse_iterator it;
-    for (it = vit->rbegin(); it != vit->rend(); ++it) {
+    for (it = movable_objs[index].rbegin(); it != movable_objs[index].rend(); ++it) {
       (*it)->Boost();
       if ((*it)->isOutOfBorder()) {
         delete *it;
-        movable_objs.pop_back();
+        movable_objs[index].pop_back();
       }
     }
-    if ((vit->empty() || (*(vit->begin()))->GetW() > GameConstants::car_spawn_min_dist) &&
+    if ((movable_objs[index].empty() || (*movable_objs[index].begin())->GetX() >
+    center->x - GameConstants::play_zone_w + GameConstants::car_spawn_min_dist) &&
         std::rand() % GameConstants::car_spawn_rate == 0) {
-      vit->push_front(CarCreator::CreateObj(
-                 new Point(0, mov_objs_h[vit - movable_objs.begin()])));
+      movable_objs[index].push_front(CarCreator::CreateObj(
+                 new Point(center->x - GameConstants::play_zone_w + ObjConstants::car_w, mov_objs_h[index])));
     }
   }
   if (input != nullptr) {
@@ -70,27 +81,6 @@ void Map::Update(Input* input) {
   }
 }
 
-const std::vector<std::deque<Object*>>& Map::GetMov() const {
-  return movable_objs;
-}
-const std::vector<std::vector<Object*>>& Map::GetStatic() const {
-  return static_objs;
-}
-const Object* Map::GetPl_0bj() const{
-  return pl_obj;
-}
-
-const std::vector<int>& Map::GetMovH() const {
-  return mov_objs_h;
-}
-const std::vector<int>& Map::GetStaticH() const {
-  return static_objs_h;
-}
-
-const std::vector<LineStruct> Map::GetLines() const {
-  return lines;
-}
-
 Map::~Map() {
   std::vector<std::deque<Object*>>::iterator vit1;
   for (vit1 = movable_objs.begin(); vit1 != movable_objs.end(); ++vit1) {
@@ -107,4 +97,5 @@ Map::~Map() {
     }
   }
   delete pl_obj;
+  delete center;
 }
