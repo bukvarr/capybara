@@ -9,6 +9,6 @@ void Game::GameProcess() {
   while (run) {
     input->Update();
     map->Update(input);
-    SDL_Delay(5);
+    SDL_Delay(GameConstants::update_delay);
   }
 }
