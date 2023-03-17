@@ -29,12 +29,12 @@ class LineStruct {
 namespace ObjConstants {
     const int car_w = 228;
     const int car_h = 228;
-    const Point* car_speed = new Point(228, 228);
+    const Point* car_speed = new Point(228, 228); //should be deleted
     const int Pl_Obj_w = 228;
     const int Pl_Obj_h = 228;
     const int tree_w = 228;
     const int tree_h = 228;
-    const Point* zero_speed = new Point(0, 0);
+    const Point* zero_speed = new Point(0, 0); //should be deleted
 }
 
 namespace GameConstants {
@@ -55,10 +55,9 @@ namespace GameConstants {
     const int road_spawn_rate = 4;
     const int car_spawn_rate = 3;
 
-    const int freeline_ind = 0;
-    const int treeline_ind = 1;
-    const int road_ind = 2;
 }
+
+enum LineIndicators {freeline_ind = 0, treeline_ind = 1, road_ind = 2};
 
 
 #endif //SRC_UTIL_H

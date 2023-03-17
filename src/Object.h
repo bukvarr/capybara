@@ -16,7 +16,7 @@ class Object {
 
   virtual void Boost() = 0;
 
-  virtual void Move(const Point& diff) = 0;
+  virtual void Move(const Point* diff) = 0;
 
   virtual size_t GetH() const = 0;
   virtual size_t GetW() const = 0;
@@ -36,7 +36,7 @@ class NPO : public Object {
 
   void Boost() override;
 
-  void Move(const Point& diff) override;
+  void Move(const Point* diff) override;
 
   size_t GetH() const override;
   size_t GetW() const override;
@@ -63,7 +63,7 @@ class PlayableObj : public Object {
   size_t GetW() const override;
   Point* GetPos() const override;
 
-  void Move(const Point& diff);
+  void Move(const Point* diff);
 
   void Boost() override;
 

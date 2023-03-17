@@ -24,7 +24,7 @@ void NPO::Boost() {
   pos->y += speed->y;
 }
 
-void NPO::Move(const Point &diff) {
+void NPO::Move(const Point* diff) {
     std::ignore = nullptr;
 }
 
@@ -56,11 +56,13 @@ bool PlayableObj::isOutOfBorder() const {
          std::abs(pos->y) >= GameConstants::play_zone_h;
 }
 
-void PlayableObj::Boost() {}
+void PlayableObj::Boost() {
+  std::ignore = nullptr;
+}
 
-void PlayableObj::Move(const Point& diff) {
-  pos->x += diff.x;
-  pos->y += diff.y;
+void PlayableObj::Move(const Point* diff) {
+  pos->x += diff->x;
+  pos->y += diff->y;
 }
 
 size_t PlayableObj::GetH() const {

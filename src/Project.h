@@ -22,7 +22,7 @@
 
 #include <string.h>
 
-//#include "Game.h"
+#include "Game.h"
 //#include "Graphics.h"
 //#include "Image.h"
 #include "Input.h"
