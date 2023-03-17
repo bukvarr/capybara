@@ -1,6 +1,6 @@
-#include "Util.h"
-
-
+#include "Project.h"
 int main() {
-std::cout << LineIndicators::treeline_ind;
+
+  std::cout << Point(1, 1).x;
+
 }

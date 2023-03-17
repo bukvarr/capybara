@@ -4,6 +4,8 @@
 
 #include"Map.h"
 
+ConstantPoints const_points;
+
 Map::Map() = default; // переделатб
 
 void Map::CreateMap() {
@@ -54,16 +56,16 @@ void Map::Update(Input* input) {
   }
 
   if (input->IsKeyUp()) {
-    pl_obj->Move(moves::up);
+    pl_obj->Move(const_points.up);
   }
   if (input->IsKeyDown()) {
-    pl_obj->Move(moves::down);
+    pl_obj->Move(const_points.down);
   }
   if (input->IsKeyLeft()) {
-     pl_obj->Move(moves::left);
+     pl_obj->Move(const_points.left);
   }
   if (input->IsKeyRight()) {
-    pl_obj->Move(moves::right);
+    pl_obj->Move(const_points.right);
   }
 
 }

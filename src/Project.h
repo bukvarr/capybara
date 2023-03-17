@@ -22,11 +22,12 @@
 
 #include <string.h>
 
-#include "Game.h"
+//#include "Game.h"
 //#include "Graphics.h"
 //#include "Image.h"
+#include "Util.h"
 #include "Input.h"
 #include "Object.h"
-#include "Util.h"
+#include "Map.h"
 
 #endif //SRC_PROJECT_H

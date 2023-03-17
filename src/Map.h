@@ -7,12 +7,10 @@
 
 #include "Project.h"
 
-namespace moves {
-    const Point* up = new Point(0, 228);
-    const Point* down = new Point(0, -228);
-    const Point* left = new Point(-228, 0);
-    const Point* right = new Point(228, 0);
-}
+class Point;
+class Object;
+class Input;
+class LineStruct;
 
 class Map {
  public:

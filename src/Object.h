@@ -6,7 +6,7 @@
 #define SRC_OBJECT_H
 
 #include "Project.h"
-#include "Util.h"
+class Point;
 
 class Object {
  public:
@@ -22,7 +22,6 @@ class Object {
   virtual size_t GetW() const = 0;
   virtual Point* GetPos() const = 0;
 
-  virtual ~Object() = 0;
 };
 
 class NPO : public Object {
@@ -42,7 +41,7 @@ class NPO : public Object {
   size_t GetW() const override;
   Point* GetPos() const override;
 
-  ~NPO() override;
+  ~NPO();
 
  private:
   Point* pos;
@@ -63,11 +62,11 @@ class PlayableObj : public Object {
   size_t GetW() const override;
   Point* GetPos() const override;
 
-  void Move(const Point* diff);
+  void Move(const Point* diff) override;
 
   void Boost() override;
 
-  ~PlayableObj() override;
+  ~PlayableObj();
 
  private:
   Point* pos;

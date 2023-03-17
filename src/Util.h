@@ -26,15 +26,15 @@ class LineStruct {
   int index; // индекс в массиве объектов
 };
 
+enum LineIndicators {freeline_ind = 0, treeline_ind = 1, road_ind = 2};
+
 namespace ObjConstants {
     const int car_w = 228;
     const int car_h = 228;
-    const Point* car_speed = new Point(228, 228); //should be deleted
     const int Pl_Obj_w = 228;
     const int Pl_Obj_h = 228;
     const int tree_w = 228;
     const int tree_h = 228;
-    const Point* zero_speed = new Point(0, 0); //should be deleted
 }
 
 namespace GameConstants {
@@ -57,7 +57,20 @@ namespace GameConstants {
 
 }
 
-enum LineIndicators {freeline_ind = 0, treeline_ind = 1, road_ind = 2};
+namespace moves {
 
+}
+
+class ConstantPoints {
+ public:
+  ConstantPoints();
+  const Point* up;
+  const Point* down;
+  const Point* left;
+  const Point* right;
+  const Point* car_speed;
+  const Point* zero_speed;
+  ~ConstantPoints();
+};
 
 #endif //SRC_UTIL_H

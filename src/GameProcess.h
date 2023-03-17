@@ -6,6 +6,7 @@
 #define SRC_GAMEPROCESS_H
 
 #include "Project.h"
+class Map;
 
 class Game {
   Game();

@@ -4,6 +4,8 @@
 
 #include "Object.h"
 
+ConstantPoints const_points2;
+
 NPO::NPO(Point* pos, const Point* speed,
          size_t width, size_t height)
          : pos(pos), speed(speed),
@@ -80,12 +82,12 @@ PlayableObj::~PlayableObj() {
 }
 
 Object* CarCreator::CreateObj(Point* pos) {
-  return new NPO(pos, ObjConstants::car_speed, ObjConstants::car_w,
+  return new NPO(pos, const_points2.car_speed, ObjConstants::car_w,
              ObjConstants::car_h);
 }
 
 Object* TreeCreator::CreateObj(Point* pos) {
-  return new NPO(pos, ObjConstants::zero_speed, ObjConstants::tree_w,
+  return new NPO(pos, const_points2.zero_speed, ObjConstants::tree_w,
                  ObjConstants::tree_h);
 }
 

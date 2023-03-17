@@ -40,6 +40,66 @@ include CMakeFiles/rules.ninja
 # Logical path to working directory; prefix for absolute paths.
 
 cmake_ninja_workdir = /home/bukvar/tp/capybara/src/cmake-build-debug/
+# =============================================================================
+# Object build statements for EXECUTABLE target src
+
+
+#############################################
+# Order-only phony target for src
+
+build cmake_object_order_depends_target_src: phony || CMakeFiles/src.dir
+
+build CMakeFiles/src.dir/main.cpp.o: CXX_COMPILER__src_Debug /home/bukvar/tp/capybara/src/main.cpp || cmake_object_order_depends_target_src
+  DEP_FILE = CMakeFiles/src.dir/main.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++1z
+  INCLUDES = -I/home/bukvar/tp/capybara/src/lib/SDL/include
+  OBJECT_DIR = CMakeFiles/src.dir
+  OBJECT_FILE_DIR = CMakeFiles/src.dir
+
+build CMakeFiles/src.dir/Util.cpp.o: CXX_COMPILER__src_Debug /home/bukvar/tp/capybara/src/Util.cpp || cmake_object_order_depends_target_src
+  DEP_FILE = CMakeFiles/src.dir/Util.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++1z
+  INCLUDES = -I/home/bukvar/tp/capybara/src/lib/SDL/include
+  OBJECT_DIR = CMakeFiles/src.dir
+  OBJECT_FILE_DIR = CMakeFiles/src.dir
+
+build CMakeFiles/src.dir/Input.cpp.o: CXX_COMPILER__src_Debug /home/bukvar/tp/capybara/src/Input.cpp || cmake_object_order_depends_target_src
+  DEP_FILE = CMakeFiles/src.dir/Input.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++1z
+  INCLUDES = -I/home/bukvar/tp/capybara/src/lib/SDL/include
+  OBJECT_DIR = CMakeFiles/src.dir
+  OBJECT_FILE_DIR = CMakeFiles/src.dir
+
+build CMakeFiles/src.dir/Map.cpp.o: CXX_COMPILER__src_Debug /home/bukvar/tp/capybara/src/Map.cpp || cmake_object_order_depends_target_src
+  DEP_FILE = CMakeFiles/src.dir/Map.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++1z
+  INCLUDES = -I/home/bukvar/tp/capybara/src/lib/SDL/include
+  OBJECT_DIR = CMakeFiles/src.dir
+  OBJECT_FILE_DIR = CMakeFiles/src.dir
+
+build CMakeFiles/src.dir/Object.cpp.o: CXX_COMPILER__src_Debug /home/bukvar/tp/capybara/src/Object.cpp || cmake_object_order_depends_target_src
+  DEP_FILE = CMakeFiles/src.dir/Object.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++1z
+  INCLUDES = -I/home/bukvar/tp/capybara/src/lib/SDL/include
+  OBJECT_DIR = CMakeFiles/src.dir
+  OBJECT_FILE_DIR = CMakeFiles/src.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target src
+
+
+#############################################
+# Link the executable src
+
+build src: CXX_EXECUTABLE_LINKER__src_Debug CMakeFiles/src.dir/main.cpp.o CMakeFiles/src.dir/Util.cpp.o CMakeFiles/src.dir/Input.cpp.o CMakeFiles/src.dir/Map.cpp.o CMakeFiles/src.dir/Object.cpp.o
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles/src.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = src
+  TARGET_PDB = src.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -74,7 +134,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/bukvar/tp/capybara/src/cmake-build-debug
 
-build all: phony
+build all: phony src
 
 # =============================================================================
 # Built-in targets
