@@ -9,11 +9,15 @@
 
 class Game {
   Game();
+  void start();
+
 
  private:
   bool run;
-  int start_time;
-
+  int start_time; //время начала в мс
+//Graphics* graphics;
+  Input* input;
+  Map* map;
 
 };
 

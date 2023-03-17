@@ -12,7 +12,7 @@ void Map::CreateMap() {
   int i = GameConstants::obstacle_start;
   while (i < GameConstants::screen_height) {
     if (std::rand() % GameConstants::treeline_spawn_rate == 0) {
-      lines.push_back(LineStruct(GameConstants::treeline_ind, static_objs_h.size()));
+      lines.push_back(LineStruct(LineIndicators::treeline_ind, static_objs_h.size()));
       static_objs_h.push_back(i);
       static_objs.push_back(std::vector<Object*>());
       i += GameConstants::obstacle_line_min_dist;
@@ -25,7 +25,7 @@ void Map::CreateMap() {
         }
       }
     } else if (std::rand() % GameConstants::road_spawn_rate == 0) {
-      lines.push_back(LineStruct(GameConstants::road_ind, mov_objs_h.size()));
+      lines.push_back(LineStruct(LineIndicators::road_ind, mov_objs_h.size()));
       mov_objs_h.push_back(i);
       movable_objs.push_back(std::deque<Object*>());
       i += GameConstants::obstacle_line_min_dist;
@@ -52,17 +52,18 @@ void Map::Update(Input* input) {
                  new Point(0, mov_objs_h[vit - movable_objs.begin()])));
     }
   }
-  if (input->IsKeyLeft()) {
-      //
+
+  if (input->IsKeyUp()) {
+    pl_obj->Move(moves::up);
   }
   if (input->IsKeyDown()) {
-      //
+    pl_obj->Move(moves::down);
+  }
+  if (input->IsKeyLeft()) {
+     pl_obj->Move(moves::left);
   }
   if (input->IsKeyRight()) {
-      //
-  }
-  if (input->IsKeyUp()) {
-      //
+    pl_obj->Move(moves::right);
   }
 
 }

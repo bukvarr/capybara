@@ -1,3 +1,2 @@
-/home/sergey/Desktop/Files/git/src/cmake-build-debug/CMakeFiles/src.dir
-/home/sergey/Desktop/Files/git/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/sergey/Desktop/Files/git/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/bukvar/tp/capybara/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/bukvar/tp/capybara/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
