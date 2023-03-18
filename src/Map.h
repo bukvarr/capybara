@@ -28,7 +28,7 @@ class Map {
   Object* pl_obj;
 
   Point* center = new Point(GameConstants::screen_width + 1,
-                            GameConstants::screen_height + 1);
+                            GameConstants::screen_height + 1); // точно константы а не поля Map?
 
   ~Map();
 };
